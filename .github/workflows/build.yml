@@ -1,4 +1,4 @@
-name: Akrep Derle
+name: Akrep Derle (Tam Detayli)
 on:
   push:
     branches: [ main ]
@@ -10,14 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Buildozer Onbellegini Getir
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.buildozer
-            .buildozer
-          key: ${{ runner.os }}-buildozer-${{ hashFiles('buildozer.spec') }}
-
+      # Onbellegi bu sefer kullanmiyoruz ki eski hatalar temizlensin
       - name: Python Kurulumu
         uses: actions/setup-python@v5
         with:
@@ -30,11 +23,11 @@ jobs:
           pip install --upgrade pip
           pip install buildozer cython==0.29.33
 
-      - name: APK Paketle (Akrep 9.8.8)
+      - name: APK Paketle (Hata Ayiklama Modu)
         run: |
           export BUILDOZER_ALLOW_ORG_NAME_AS_PROJECT_NAME=1
-          # 'yes |' yerine 'buildozer --warn-on-root' ve sessiz mod kullaniyoruz
-          buildozer -v android debug --brief
+          # log_level = 2 ile en detayli hatayi alacagiz
+          buildozer android debug --brief || buildozer android debug log_level=2
         
       - name: APK Dosyasini GitHub'a Yukle
         uses: actions/upload-artifact@v4
