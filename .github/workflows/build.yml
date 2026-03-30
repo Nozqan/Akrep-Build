@@ -33,8 +33,8 @@ jobs:
       - name: APK Paketle (Akrep 9.8.8)
         run: |
           export BUILDOZER_ALLOW_ORG_NAME_AS_PROJECT_NAME=1
-          # Hata almamak için log seviyesini düşürüp sessizce paketliyoruz
-          buildozer -v android debug || buildozer -v android debug
+          # Tüm soruları otomatik cevaplamak için 'yes' ekledik
+          yes | buildozer android debug
         
       - name: APK Dosyasini GitHub'a Yukle
         uses: actions/upload-artifact@v4
