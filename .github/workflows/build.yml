@@ -33,7 +33,7 @@ jobs:
       - name: APK Paketle (Akrep 9.8.8)
         run: |
           export BUILDOZER_ALLOW_ORG_NAME_AS_PROJECT_NAME=1
-          yes | buildozer android debug
+          yes | buildozer -v android debug
         
       - name: APK Dosyasini GitHub'a Yukle
         uses: actions/upload-artifact@v4
