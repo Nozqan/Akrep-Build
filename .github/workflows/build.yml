@@ -33,8 +33,8 @@ jobs:
       - name: APK Paketle (Akrep 9.8.8)
         run: |
           export BUILDOZER_ALLOW_ORG_NAME_AS_PROJECT_NAME=1
-          # --brief kullanarak terminali yazıya boğmuyoruz, böylece bağlantı kopmuyor
-          buildozer android debug --brief
+          # --brief ile baglantiyi koruyoruz, hata olursa detaylari yakaliyoruz
+          buildozer android debug --brief || (buildozer android debug --version && exit 1)
         
       - name: APK Dosyasini GitHub'a Yukle
         uses: actions/upload-artifact@v4
