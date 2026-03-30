@@ -1,4 +1,4 @@
-name: Akrep Derle (Vip Surum)
+name: Akrep Derle
 on:
   push:
     branches: [ main ]
@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Java 17 Kurulumu (Kritik)
+      - name: Java 17 Kurulumu
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -24,17 +24,17 @@ jobs:
       - name: Sistem Bagimliliklarini Yukle
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential git python3-dev ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev libgstreamer1.0-dev gstreamer1.0-plugins-base-apps libgstreamer-plugins-base1.0-dev
+          sudo apt-get install -y build-essential git python3-dev ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev libgstreamer1.0-dev gstreamer1.0-plugins-base-apps libgstreamer-plugins-base1.0-dev autoconf automake libtool
           pip install --upgrade pip
           pip install "cython<3.0" buildozer
 
-      - name: APK Paketle (Akrep 9.8.8)
+      - name: APK Paketle
         run: |
           export BUILDOZER_ALLOW_ORG_NAME_AS_PROJECT_NAME=1
-          # Tum onaylari buildozer icinden veriyoruz
+          # Hata vermemesi icin sessiz ve otomatik onayli mod
           buildozer android debug --brief
         
-      - name: APK Dosyasini GitHub'a Yukle
+      - name: APK Dosyasini Yukle
         uses: actions/upload-artifact@v4
         with:
           name: Akrep-APK
