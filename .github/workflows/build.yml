@@ -24,14 +24,13 @@ jobs:
       - name: Sistem Bagimliliklarini Yukle
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential git python3-dev ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev libgstreamer1.0-dev gstreamer1.0-plugins-base-apps libgstreamer-plugins-base1.0-dev autoconf automake libtool
+          sudo apt-get install -y build-essential git python3-dev ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev libgstreamer1.0-dev gstreamer1.0-plugins-base-apps libgstreamer-plugins-base1.0-dev autoconf automake libtool m4 gettext
           pip install --upgrade pip
           pip install "cython<3.0" buildozer
 
       - name: APK Paketle
         run: |
           export BUILDOZER_ALLOW_ORG_NAME_AS_PROJECT_NAME=1
-          # Hata vermemesi icin sessiz ve otomatik onayli mod
           buildozer android debug --brief
         
       - name: APK Dosyasini Yukle
